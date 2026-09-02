@@ -185,7 +185,7 @@
   }
   .hero h1{
     font-size:clamp(46px, 7.4vw, 108px);
-    max-width:15ch;
+    max-width:18ch;
     color:var(--platinum);
   }
   .hero h1 em{
@@ -292,10 +292,10 @@
   .services-list{ border-top:1px solid var(--line); }
   .service-row{
     display:grid;
-    grid-template-columns:110px 1fr 320px;
-    gap:30px;
-    align-items:center;
-    padding:32px 0;
+    grid-template-columns:1fr;
+    gap:12px;
+    align-items:start;
+    padding:36px 0;
     border-bottom:1px solid var(--line);
   }
   .service-row .code{
@@ -303,11 +303,17 @@
     font-size:13px; color:var(--brass); letter-spacing:0.08em;
   }
   .service-row h3{
-    font-size:26px; font-weight:700; text-transform:none;
+    font-size:29px; font-weight:700; text-transform:uppercase;
     font-family:'Inter',sans-serif; color:var(--platinum);
-    letter-spacing:0;
+    color:var(--brass); letter-spacing:0.02em;
   }
-  .service-row p{ color:var(--muted); font-size:14.5px; }
+  .service-row p{
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.7;
+    max-width:760px;
+    width:100%;
+  }
 
   /* ---------- Why us ---------- */
   .why-grid{
@@ -324,11 +330,14 @@
 
   /* ---------- Cotización / booking ---------- */
   .quote-shell{
-    display:grid; grid-template-columns:1.1fr 1fr; gap:0;
+    display:grid; grid-template-columns:1fr; gap:0;
     border:1px solid var(--line);
     background:var(--bg-panel);
+    max-width:1400px;
+    width:100%;
+    margin:0 auto;
   }
-  .quote-form{ padding:52px; border-right:1px solid var(--line); }
+  .quote-form{ padding:52px 62px; border-right:1px solid var(--line); width:100%; }
   .quote-side{ padding:52px; background:var(--bg-panel-2); display:flex; flex-direction:column; }
   .field{ margin-bottom:20px; }
   .field label{
@@ -346,6 +355,7 @@
     font-size:14.5px;
     border-radius:var(--radius);
   }
+  .quote-form .field-row{ width:100%; }
   .field input:focus, .field select:focus, .field textarea:focus{
     outline:none; border-color:var(--brass);
   }
@@ -369,9 +379,12 @@
   .wompi-box .amount span{ font-size:14px; color:var(--muted); font-family:'JetBrains Mono',monospace; }
   #wompi-container{ margin-top:16px; min-height:46px; }
 
+  #cotizar > .wrap{ max-width:none; }
+
   /* ---------- Contacto ---------- */
   .contact-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px;
+    max-width:900px; margin-left:auto; margin-right:auto;
     background:var(--line); border:1px solid var(--line);
   }
   .contact-card{ background:var(--bg-panel); padding:36px; }
@@ -445,7 +458,7 @@
 <script>
   const CONFIG = {
     whatsappNumber: "573000000000", // TODO: reemplaza por tu número real de WhatsApp Business. Formato: 57 + número, sin "+" ni espacios.
-    email: "sprmd0309@gmail.com",
+    email: "servinca25@gmail.com",
     city: "Barranquilla, Atlántico, Colombia",
     wompiPublicKey: "pub_test_XXXXXXXXXXXXXXXXXXXX", // TODO: reemplaza por tu llave pública real de Wompi (dashboard.wompi.co)
     depositAmountCOP: 150000, // Anticipo de ejemplo para reservar servicio — ajústalo a tu tarifa real
@@ -456,13 +469,12 @@
 <header>
   <div class="wrap">
     <a href="#top" class="logo">
-      <span class="mark">S.I.T.B.</span>
-      <span class="sub">Transporte Blindado · Barranquilla</span>
+      <span class="mark">Servicios Integrales</span>
+      <span class="sub">Vehiculos Blindados · Barranquilla · Cartagena</span>
     </a>
     <nav class="links">
       <a href="#flota">Flota</a>
       <a href="#servicios">Servicios</a>
-      <a href="#nosotros">Por qué elegirnos</a>
       <a href="#cotizar">Cotizar</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -481,52 +493,24 @@
   <section class="hero" style="padding-bottom:0;">
     <div class="hero-bg"></div>
     <div class="wrap hero-inner">
-      <div class="eyebrow">SITB · BARRANQUILLA / COL</div>
-      <h1>Blindaje<br>y protocolo<br><em>sin excepciones.</em></h1>
-      <p class="lede">Transporte ejecutivo blindado para directivos, delegaciones y operaciones sensibles en Barranquilla. Flota certificada, conductores entrenados en seguridad y coordinación logística de extremo a extremo.</p>
+      <div class="eyebrow"> BARRANQUILLA / CARTAGENA </div>
+      <h1>Servicios<br>Integrales<br><em>Vehiculos Blindados</em></h1>
+      <p class="lede"></p>
       <div class="hero-actions">
         <a class="btn btn-brass" id="hero-wa" href="#" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
         <a class="btn btn-ghost" href="#flota">Ver la flota</a>
       </div>
-      <div class="hero-plates">
-        <span class="plate brass">04 vehículos blindados</span>
-        <span class="plate">Disponibilidad 24/7</span>
-        <span class="plate">Cobertura área metropolitana</span>
       </div>
     </div>
   </section>
-
-  <!-- ============ TRUST STRIP ============ -->
-  <div class="trust">
-    <div class="wrap">
-      <div class="trust-item">
-        <span class="num">04</span>
-        <span class="label">Unidades blindadas</span>
-      </div>
-      <div class="trust-item">
-        <span class="num">24/7</span>
-        <span class="label">Disponibilidad operativa</span>
-      </div>
-      <div class="trust-item">
-        <span class="num">100%</span>
-        <span class="label">Conductores certificados</span>
-      </div>
-      <div class="trust-item">
-        <span class="num">B/QUILLA</span>
-        <span class="label">Base de operaciones</span>
-      </div>
-    </div>
-  </div>
 
   <!-- ============ FLOTA ============ -->
   <section id="flota">
     <div class="wrap">
       <div class="sec-head reveal">
         <div>
-          <div class="eyebrow">Unidad · 01</div>
           <h2>La flota</h2>
         </div>
-        <p class="desc">Cuatro vehículos blindados, mantenidos y verificados antes de cada servicio. El nivel de blindaje certificado se confirma según la unidad asignada y disponibilidad.</p>
       </div>
 
       <div class="fleet-grid reveal">
@@ -539,10 +523,8 @@
             <div class="name">Toyota 4Runner TRD Pro</div>
             <div class="trim">Beige — Café · Todoterreno blindado</div>
             <div class="car-specs">
-              <div>Capacidad<strong>5 pasajeros</strong></div>
-              <div>Tracción<strong>4x4</strong></div>
-              <div>Uso recomendado<strong>Ejecutivo / campo</strong></div>
-              <div>Blindaje<strong>Certificado · consultar nivel</strong></div>
+              <div>Capacidad<strong>4 pasajeros</strong></div>
+              <div>Blindaje<strong>Nivel ll+</strong></div>
             </div>
             <a class="btn btn-ghost car-wa" href="#" data-car="Toyota 4Runner TRD Pro (beige/café)">Cotizar esta unidad</a>
           </div>
@@ -557,10 +539,8 @@
             <div class="name">Toyota 4Runner SR5</div>
             <div class="trim">Azul · SUV blindada</div>
             <div class="car-specs">
-              <div>Capacidad<strong>5 pasajeros</strong></div>
-              <div>Tracción<strong>4x4</strong></div>
-              <div>Uso recomendado<strong>Traslados ejecutivos</strong></div>
-              <div>Blindaje<strong>Certificado · consultar nivel</strong></div>
+              <div>Capacidad<strong>4 pasajeros</strong></div>
+              <div>Blindaje<strong>Nivel ll+</strong></div>
             </div>
             <a class="btn btn-ghost car-wa" href="#" data-car="Toyota 4Runner SR5 (azul)">Cotizar esta unidad</a>
           </div>
@@ -575,10 +555,8 @@
             <div class="name">Toyota Land Cruiser Prado TXL</div>
             <div class="trim">Blanca · 2026 · SUV blindada</div>
             <div class="car-specs">
-              <div>Capacidad<strong>5 pasajeros</strong></div>
-              <div>Tracción<strong>4x4</strong></div>
-              <div>Uso recomendado<strong>Delegaciones / VIP</strong></div>
-              <div>Blindaje<strong>Certificado · consultar nivel</strong></div>
+              <div>Capacidad<strong>6 pasajeros</strong></div>
+              <div>Blindaje<strong>Nivel ll+</strong></div>
             </div>
             <a class="btn btn-ghost car-wa" href="#" data-car="Toyota Land Cruiser Prado TXL 2026 (blanca)">Cotizar esta unidad</a>
           </div>
@@ -594,9 +572,7 @@
             <div class="trim">Blanco · SUV coupé blindada</div>
             <div class="car-specs">
               <div>Capacidad<strong>5 pasajeros</strong></div>
-              <div>Tracción<strong>xDrive AWD</strong></div>
-              <div>Uso recomendado<strong>Alta gama / eventos</strong></div>
-              <div>Blindaje<strong>Certificado · consultar nivel</strong></div>
+              <div>Blindaje<strong>Nivel ll+</strong></div>
             </div>
             <a class="btn btn-ghost car-wa" href="#" data-car="BMW X4 M40i (blanco)">Cotizar esta unidad</a>
           </div>
@@ -610,53 +586,25 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div>
-          <div class="eyebrow">Unidad · 02</div>
           <h2>Servicios</h2>
         </div>
-        <p class="desc">Operación puerta a puerta, por horas o bajo contrato corporativo. Cada servicio se coordina con protocolo y confidencialidad.</p>
       </div>
 
       <div class="services-list reveal">
         <div class="service-row">
-          <span class="code">SVC.01</span>
-          <h3>Traslados ejecutivos</h3>
-          <p>Aeropuerto, oficina, hotel y eventos. Puntualidad y ruta verificada de extremo a extremo.</p>
-        </div>
-        <div class="service-row">
-          <span class="code">SVC.02</span>
-          <h3>Custodia de directivos</h3>
-          <p>Acompañamiento y transporte para personal directivo y visitantes de alto perfil.</p>
-        </div>
-        <div class="service-row">
-          <span class="code">SVC.03</span>
-          <h3>Eventos y delegaciones VIP</h3>
-          <p>Coordinación de flota para comitivas, eventos corporativos y visitas internacionales.</p>
-        </div>
-        <div class="service-row">
-          <span class="code">SVC.04</span>
-          <h3>Servicio por horas / disposición</h3>
-          <p>Vehículo y conductor a disposición durante la jornada, con ruta flexible.</p>
-        </div>
-        <div class="service-row">
-          <span class="code">SVC.05</span>
-          <h3>Rutas intermunicipales</h3>
-          <p>Trayectos fuera de Barranquilla con planificación de ruta y contingencia.</p>
-        </div>
-        <div class="service-row" style="border-bottom:none;">
-          <span class="code">SVC.06</span>
-          <h3>Contratos corporativos</h3>
-          <p>Planes mensuales para empresas con necesidad recurrente de transporte blindado.</p>
+          <h3>Traslados ejecutivos</h3> 
+          <p style="color: white; max-width: 820px; width: 100%; line-height: 1.7; margin: 0;">Servicio de alquiler de vehículo blindado con conductor para traslados urbanos, con disponibilidad por jornada diaria.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ POR QUÉ ELEGIRNOS ============ -->
+  <!-- ============ POR QUÉ ELEGIRNOS ============
   <section id="nosotros">
     <div class="wrap">
       <div class="sec-head reveal">
         <div>
-          <div class="eyebrow">Unidad · 03</div>
           <h2>Por qué elegirnos</h2>
         </div>
       </div>
@@ -684,19 +632,16 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ============ COTIZAR / RESERVA ============ -->
   <section id="cotizar" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
     <div class="wrap">
       <div class="sec-head reveal">
         <div>
-          <div class="eyebrow">Unidad · 04</div>
           <h2>Cotiza tu servicio</h2>
         </div>
-        <p class="desc">Completa el formulario y lo enviamos directo a nuestro WhatsApp, o reserva con un anticipo seguro por Wompi.</p>
       </div>
-
       <div class="quote-shell reveal">
         <form class="quote-form" id="quote-form">
           <div class="field-row">
@@ -705,22 +650,18 @@
               <input type="text" id="q-name" required placeholder="Tu nombre">
             </div>
             <div class="field">
-              <label>Empresa (opcional)</label>
-              <input type="text" id="q-company" placeholder="Nombre de la empresa">
+              <label>Teléfono</label>
+              <input type="tel" id="q-phone" required placeholder="321 456 7890">
             </div>
           </div>
           <div class="field-row">
-            <div class="field">
-              <label>Teléfono</label>
-              <input type="tel" id="q-phone" required placeholder="300 000 0000">
-            </div>
             <div class="field">
               <label>Vehículo de interés</label>
               <select id="q-car">
                 <option>Toyota 4Runner TRD Pro (beige/café)</option>
                 <option>Toyota 4Runner SR5 (azul)</option>
                 <option>Toyota Land Cruiser Prado TXL 2026 (blanca)</option>
-                <option>BMW X4 M40i (blanco)</option>
+                <option>BMW X4 M40i (blanca)</option>
                 <option>No estoy seguro / me pueden asesorar</option>
               </select>
             </div>
@@ -731,8 +672,12 @@
               <input type="date" id="q-date">
             </div>
             <div class="field">
-              <label>Origen → Destino</label>
-              <input type="text" id="q-route" placeholder="Ej: Aeropuerto — Hotel">
+              <label>Ciudad</label>
+              <select id="q-route">
+                <option value="">Selecciona una ciudad</option>
+                <option>Barranquilla</option>
+                <option>Cartagena</option>
+              </select>
             </div>
           </div>
           <div class="field">
@@ -740,24 +685,13 @@
             <textarea id="q-msg" rows="3" placeholder="Detalles adicionales del servicio"></textarea>
           </div>
           <div class="form-actions">
-            <button type="submit" class="btn btn-brass">Enviar por WhatsApp</button>
+            <button type="submit" class="btn btn-brass">
+              <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.3-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.3c1.5.8 3.3 1.3 5.2 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.5 14 3 12.3 3 10.5c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 9.7-8 9.7z"/></svg>
+              Enviar por WhatsApp
+            </button>
             <a class="btn btn-ghost" id="quote-mail">Enviar por correo</a>
           </div>
         </form>
-
-        <div class="quote-side">
-          <h3>Reserva con anticipo</h3>
-          <p>Asegura la unidad para tu fecha con un anticipo procesado de forma segura a través de Wompi. El valor final del servicio se confirma según ruta y duración.</p>
-
-          <div class="wompi-box">
-            <div class="plate" style="margin-bottom:14px;">Pago seguro · Wompi</div>
-            <div class="amount">$150.000<span> COP · anticipo</span></div>
-            <div id="wompi-container"></div>
-            <p style="font-size:12px; color:var(--muted-dim); margin-top:14px; line-height:1.5;">
-              El botón de pago se activa con tu llave pública real de Wompi. Mientras se configura, este espacio queda listo para conectarse.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -767,7 +701,6 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div>
-          <div class="eyebrow">Unidad · 05</div>
           <h2>Contacto</h2>
         </div>
       </div>
@@ -779,11 +712,7 @@
         </div>
         <div class="contact-card">
           <span class="k">Correo</span>
-          <a class="v" id="contact-mail" href="#">sprmd0309@gmail.com <small>Cotizaciones y contratos corporativos</small></a>
-        </div>
-        <div class="contact-card">
-          <span class="k">Base de operaciones</span>
-          <div class="v">Barranquilla <small>Atlántico, Colombia — cobertura área metropolitana</small></div>
+          <a class="v" id="contact-mail" href="#">servinca25@gmail.com</small></a>
         </div>
       </div>
     </div>
@@ -795,8 +724,8 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="logo">
-        <span class="mark">S.I.T.B.</span>
-        <span class="sub">Servicios Integrales de Transporte Blindado</span>
+        <span class="mark">Servicios Integrales</span>
+
       </div>
       <div class="foot-links">
         <div class="foot-col">
@@ -809,13 +738,13 @@
           <h5>Contacto</h5>
           <a id="foot-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
           <a id="foot-mail" href="#">Correo</a>
-          <p>Barranquilla, Colombia</p>
+
         </div>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© <span id="year"></span> S.I.T.B. — Todos los derechos reservados.</span>
-      <span>Transporte blindado ejecutivo · Barranquilla</span>
+      <span>© <span id="year"></span> Servicios Integrales — Todos los derechos reservados.</span>
+      <span>Transporte blindado ejecutivo · Barranquilla · Cartagena</span>
     </div>
   </div>
 </footer>
