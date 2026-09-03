@@ -786,15 +786,13 @@
 
   function buildQuoteMessage(){
     const name = document.getElementById('q-name').value || '(sin nombre)';
-    const company = document.getElementById('q-company').value;
     const phone = document.getElementById('q-phone').value || '(sin teléfono)';
     const car = document.getElementById('q-car').value;
     const date = document.getElementById('q-date').value || 'por confirmar';
     const route = document.getElementById('q-route').value || 'por confirmar';
     const msg = document.getElementById('q-msg').value;
-    return `Solicitud de cotización — S.I.T.B.\n`+
+    return `Solicitud de cotización — Servicios Integrales\n`+
       `Nombre: ${name}\n`+
-      (company ? `Empresa: ${company}\n` : '')+
       `Teléfono: ${phone}\n`+
       `Vehículo: ${car}\n`+
       `Fecha: ${date}\n`+
