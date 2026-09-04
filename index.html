@@ -694,56 +694,53 @@
     </button>
 
     <!-- ESTE será el botón de EmailJS -->
-    <button type="button" class="btn btn-ghost" id="quote-mail">
+    <!-- <button type="button" class="btn btn-ghost" id="quote-mail"> -->
+      <button type="button"  id="quote-mail">
       Enviar por correo
     </button>
 
   </div>
 
   <script>
-  document
-    .getElementById("quote-mail")
-    .addEventListener("click", function () {
+document
+  .getElementById("quote-mail")
+  .addEventListener("click", function () {
 
-      const form = document.getElementById("quote-form");
-      const button = this;
+    const form = document.getElementById("quote-form");
+    const button = this;
 
-      // Verifica los campos required
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
+    // Verifica los campos required
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
-      button.disabled = true;
-      button.textContent = "Enviando...";
+    button.disabled = true;
+    button.textContent = "Enviando...";
 
-      emailjs.sendForm(
-        "service_pmplisg",
-        "template_sjqbssb",
-        form
-      )
-      .then(function () {
+    emailjs.sendForm(
+      "service_pmplisg",
+      "template_sjqbssb",
+      form
+    )
+    .then(function () {
 
-        alert("¡Solicitud enviada correctamente!");
+      // EmailJS confirmó que el formulario fue enviado
+      window.location.href = "/gracias";
 
-        form.reset();
+    })
+    .catch(function (error) {
 
-        button.disabled = false;
-        button.textContent = "Enviar por correo";
+      console.error("Error enviando correo:", error);
 
-      })
-      .catch(function (error) {
+      alert("No se pudo enviar la solicitud. Inténtalo nuevamente.");
 
-        console.error("Error enviando correo:", error);
-
-        alert("No se pudo enviar la solicitud. Inténtalo nuevamente.");
-
-        button.disabled = false;
-        button.textContent = "Enviar por correo";
-
-      });
+      button.disabled = false;
+      button.textContent = "Enviar por correo";
 
     });
+
+});
 </script>
 
 </form>
@@ -862,57 +859,6 @@
     console.log(`mailto:${CONFIG.email}?subject=${subject}&body=${body}`);
   });
 
-  // ---- Wompi widget (se activa cuando configures tu llave pública real) ----
-  // La firma de integridad NUNCA se calcula aquí en el navegador: se pide a
-  // /api/wompi-signature, una función que corre en el servidor y que es la
-  // única que conoce la llave secreta de integridad (ver api/wompi-signature.js).
-  (async function initWompi(){
-    const container = document.getElementById('wompi-container');
-
-    if(!CONFIG.wompiPublicKey || CONFIG.wompiPublicKey.includes('XXXX')){
-      container.innerHTML =
-        '<div style="font-family:\'JetBrains Mono\',monospace; font-size:11.5px; color:var(--muted-dim); border:1px solid var(--line); padding:12px; border-radius:2px;">Configura CONFIG.wompiPublicKey para activar el botón de pago.</div>';
-      return;
-    }
-
-    const reference = 'SITB-' + Date.now();
-    const amountInCents = CONFIG.depositAmountCOP * 100;
-    const currency = 'COP';
-
-    let signature = null;
-    try {
-      const resp = await fetch(CONFIG.signatureEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reference, amountInCents, currency })
-      });
-      if(resp.ok){
-        const data = await resp.json();
-        signature = data.signature;
-      }
-    } catch (err) {
-      // El endpoint de firma no está disponible todavía (por ejemplo, en desarrollo local
-      // sin desplegar en Vercel, o si aún falta configurar WOMPI_INTEGRITY_SECRET).
-    }
-
-    if(!signature){
-      container.innerHTML =
-        '<div style="font-family:\'JetBrains Mono\',monospace; font-size:11.5px; color:var(--muted-dim); border:1px solid var(--line); padding:12px; border-radius:2px;">No se pudo generar la firma de integridad. Verifica que el sitio esté desplegado en Vercel y que WOMPI_INTEGRITY_SECRET esté configurada.</div>';
-      return;
-    }
-
-    const form = document.createElement('form');
-    const script = document.createElement('script');
-    script.src = 'https://checkout.wompi.co/widget.js';
-    script.setAttribute('data-render', 'button');
-    script.setAttribute('data-public-key', CONFIG.wompiPublicKey);
-    script.setAttribute('data-currency', currency);
-    script.setAttribute('data-amount-in-cents', String(amountInCents));
-    script.setAttribute('data-reference', reference);
-    script.setAttribute('data-signature:integrity', signature);
-    form.appendChild(script);
-    container.appendChild(form);
-  })();
 
   // ---- Scroll reveal ----
   const observer = new IntersectionObserver((entries)=>{
