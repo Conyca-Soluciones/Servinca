@@ -694,8 +694,8 @@
     </button>
 
     <!-- ESTE será el botón de EmailJS -->
-    <!-- <button type="button" class="btn btn-ghost" id="quote-mail"> -->
-      <button type="button"  id="quote-mail">
+    <button type="button" class="btn btn-ghost" id="quote-mail">
+      <!-- <button type="button"  id="quote-mail"> -->
       Enviar por correo
     </button>
 
@@ -855,7 +855,7 @@ document
     e.preventDefault();
     const subject = encodeURIComponent('Solicitud de cotización — Transporte blindado');
     const body = encodeURIComponent(buildQuoteMessage());
-    window.location.href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
+    //window.location.href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
     console.log(`mailto:${CONFIG.email}?subject=${subject}&body=${body}`);
   });
 
