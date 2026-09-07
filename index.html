@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Servicios Integrales | Vehiculos Blindados </title>
+<title>Servicios Integrales | Alquiler Vehiculos Blindados </title>
 <meta name="description" content="Transporte blindado ejecutivo en Barranquilla. Flota certificada, conductores de seguridad, disponibilidad 24/7.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -243,6 +243,8 @@
   }
   .sec-head h2{ font-size:clamp(34px,4.4vw,58px); max-width:12ch; }
   .sec-head .desc{ max-width:360px; color:var(--muted); font-size:15px; padding-bottom:6px; }
+  #cotizar .sec-head{ flex-direction:column; align-items:center; text-align:center; gap:14px; }
+  #cotizar .sec-head .desc{ max-width:480px; }
 
   /* ---------- Fleet ---------- */
   .fleet-grid{
@@ -456,6 +458,11 @@
     section{ padding:80px 0; }
   }
 </style>
+<!-- Vercel Web Analytics — no requiere instalación, solo funciona al desplegar en Vercel -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -510,7 +517,7 @@
     <div class="hero-bg"></div>
     <div class="wrap hero-inner">
       <div class="eyebrow"> BARRANQUILLA / CARTAGENA </div>
-      <h1>Servicios<br>Integrales<br><em>Vehiculos Blindados</em></h1>
+      <h1>Servicios<br>Integrales<br><em> Alquiler Vehiculos Blindados</em></h1>
       <p class="lede"></p>
       <div class="hero-actions">
         <a class="btn btn-brass" id="hero-wa" href="#" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
@@ -617,6 +624,18 @@
   </section>
 
 
+  <!-- ============ COTIZAR / RESERVA ============ -->
+  <section id="cotizar" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">Unidad · 04</div>
+          <h2>Cotiza tu servicio</h2>
+        </div>
+        <p class="desc">Completa el formulario y te contactamos para confirmar tu servicio.</p>
+      </div>
+
+      <div class="quote-shell reveal">
 <form class="quote-form" id="quote-form">
 
   <div class="field-row">
@@ -689,7 +708,7 @@
   <div class="form-actions">
 
     <!-- WhatsApp lo dejamos para después -->
-    <button type="button" class="btn btn-brass">
+    <button type="button" class="btn btn-brass" id="quote-wa">
       Enviar por WhatsApp
     </button>
 
@@ -744,6 +763,10 @@ document
 </script>
 
 </form>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CONTACTO ============ -->
   <section id="contacto">
     <div class="wrap">
@@ -845,9 +868,15 @@ document
   function clickcorreo(){
     console.log('clickcorreo called');
   }
-  form.addEventListener('submit', function(e){
+  const waBtn = document.getElementById('quote-wa');
+  waBtn.addEventListener('click', function(e){
     e.preventDefault();
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
     window.open(waLink(buildQuoteMessage()), '_blank');
+    window.location.href = '/gracias.html';
   });
 
   mailBtn.addEventListener('click', function(e){
